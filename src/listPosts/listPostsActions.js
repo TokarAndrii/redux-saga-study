@@ -6,7 +6,7 @@ const FETCH_LIST_POSTS_SUCCEEDED = listPosts => ({
 });
 
 const FETCH_LIST_POSTS_FAILED = error => ({
-    type: types.FETCH_LIST_POSTS_SUCCEEDED,
+    type: types.FETCH_LIST_POSTS_FAILED,
     payload: { error }
 });
 

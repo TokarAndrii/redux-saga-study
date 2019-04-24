@@ -6,7 +6,9 @@ const listPostsReducer = (state = [], { type, payload }) => {
         case types.FETCH_LIST_POSTS_FAILED:
             return payload.error;
         case types.FETCH_LIST_POSTS_STARTED:
-        default: return state
+            return state;
+        default:
+            return state
     }
 };
 
