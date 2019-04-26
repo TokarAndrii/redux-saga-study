@@ -1,6 +1,7 @@
 import { put, call, takeLatest, all, delay } from 'redux-saga/effects';
 import api from '../../utils/api';
-import listPostsActions from './listPostsActions'
+import listPostsActions from './listPostsActions';
+import tokenGetWatcher from '../auth/sagas';
 import types from './types'
 
 
@@ -27,5 +28,5 @@ function* listPostsWatcher() {
 }
 
 export default function* rootSaga() {
-    yield all([listPostsWatcher()])
+    yield all([listPostsWatcher(), tokenGetWatcher()])
 }

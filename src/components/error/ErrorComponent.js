@@ -5,8 +5,12 @@ const ErrorComponent = ({ className, error, handleClose }) => (
     <div className={className}>
         <button className={styles.closeBtn} onClick={handleClose}>close</button>
         <div>Oops it seems something went wrong:</div>
-        <div>{error.response.status}</div>
-        <div>{error.response.statusText}</div>
+        {error.response && (
+            <>
+                <div>{error.response.status}</div>
+                <div>{error.response.statusText}</div>
+            </>
+        )}
     </div>
 );
 

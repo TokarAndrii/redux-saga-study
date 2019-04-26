@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import ListPosts from '../listPosts/ListPostsContainer';
 import listPostsActions from '../listPosts/listPostsActions';
+import authActions from '../auth/authActions'
 import IsLoadingComponent from '../isLoading/IsLoadingComponent';
 import ErrorComponet from '../error/ErrorComponentContainer';
 import selectors from './selectors';
 import styles from './App.module.css';
 
-function App({ getListposts, isLoading, error, isErrorOpen }) {
+function App({ getListposts, isLoading, error, isErrorOpen, getToken, authToken }) {
+  useEffect(() => {
+    //to do call for token
+    if (!authToken) {
+      getToken();
+    }
+
+  });
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
@@ -32,10 +40,13 @@ const MSTp = state => ({
   isLoading: selectors.getIsLoading(state),
   error: selectors.getError(state),
   isErrorOpen: selectors.getIsErrorOpen(state),
+  authToken: selectors.getAuthToken(state)
 })
 
 const MDTp = {
   getListposts: listPostsActions.FETCH_LIST_POSTS_STARTED,
+  getToken: authActions.AUTH_REQUEST_TOKEN_STARTED
+
 }
 
 export default connect(MSTp, MDTp)(App);
