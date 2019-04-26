@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const postApiUrl = 'http://jsonplaceholder.typicode.com/posts/1';
+const postApiUrl = 'http://jsonplaceholder.typicode.com/posts/';
 const GET = 'get'
 
 
