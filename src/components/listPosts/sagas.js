@@ -1,11 +1,13 @@
-import { put, call, takeLatest, all } from 'redux-saga/effects';
-import api from '../utils/api';
+import { put, call, takeLatest, all, delay } from 'redux-saga/effects';
+import api from '../../utils/api';
 import listPostsActions from './listPostsActions'
 import types from './types'
 
 
 function* getAllPosts() {
     try {
+        // this for emulate long time api fetch to show spinner
+        yield delay(500);
         const posts = yield call(api.makeRequestListPosts);
 
         console.log('posts at getAllPosts', posts)

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const postApiUrl = 'http://jsonplaceholder.typicode.com/posts/';
+const postApiUrl = 'http://jsonplaceholder.typicode.com/posts/1';
 const GET = 'get'
 
 
@@ -10,10 +10,12 @@ const makeRequestListPosts = (url) => {
         url: postApiUrl
     })
         .then(resp => {
-            console.log('resp.data - ', resp)
-            return resp.data
+            if (Array.isArray(resp.data)) return resp.data;
+            const res = [];
+            res.push(resp.data)
+
+            return res;
         })
-        .catch(err => err)
 }
 
 export default { makeRequestListPosts }

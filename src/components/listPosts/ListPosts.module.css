@@ -9,11 +9,25 @@
 
 .postItem{
     padding: 32px 0;
-    border: 1px solid black;
     margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ItemContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .postBody{
     font-size: 1.1rem;
     width: 75vw;
+}
+
+.checkBox{
+    width: 24px;
+    height: 24px;
 }
