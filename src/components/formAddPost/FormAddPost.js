@@ -22,7 +22,7 @@ class FormAddPost extends Component {
         const { addPost } = this.props;
         if (!title || !content) return alert("title or content empty!!!");
         console.log(`title - ${title}, content - ${content}`);
-        addPost(newPost);
+        addPost();
 
     }
 

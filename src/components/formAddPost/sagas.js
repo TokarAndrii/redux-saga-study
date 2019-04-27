@@ -5,11 +5,12 @@ import addPostActions from './addPostActions';
 
 
 
-function* addPost(post) {
+function* addPost() {
     try {
         // this for emulate long time api fetch to show spinner
         yield delay(500);
-        const result = yield call(api.addPost(post));
+        const post = { title: "test 1", content: "test 1 content" }
+        const result = call(api.addPost(post));
 
         console.log('result at addPost', result);
 

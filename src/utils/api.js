@@ -57,18 +57,15 @@ const addPost = ({ title, content }) => {
     const state = store.getState();
     const authToken = selectors.getAuthToken(state);
     console.log('authToken at addPostRequest', authToken);
-    return axiosInstance.post(
-        POSTS_URL,
-        {
-            "title": title,
-            "content": content
 
-        },
+    return axiosInstance.post(POSTS_URL, { "title": title, "content": content },
         {
             headers: {
-                Authorization: `Bearer ${authToken}`
+                'Authorization': `Bearer ${authToken}`
             }
+
         })
+
         .then(resp => {
             console.log('resp at addPost', resp);
             return resp;
