@@ -29,9 +29,5 @@ function* listPostsWatcher() {
 }
 
 export default function* rootSaga() {
-    yield all(
-        [
-            listPostsWatcher(), tokenGetWatcher(), addPostWatcher()
-        ]
-    )
+    yield all([listPostsWatcher(), tokenGetWatcher(), addPostWatcher()])
 }
