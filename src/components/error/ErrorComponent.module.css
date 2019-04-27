@@ -1,0 +1,17 @@
+.closeBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.closeBtn::before{
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(./x-mark-circle-thin.svg) no-repeat;
+}

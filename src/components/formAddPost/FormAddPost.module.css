@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 500px;
+}
+
+.label{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 64px;
+    width: 100%;
+}
+
+.input{
+    padding: 8px 16px;
+    flex: 1 1 auto;
+}
+
+.inputArea{
+    margin: 0;
+    padding: 8px 16px;
+    flex: 1 1 auto;
+}
+
+.formLabelName{
+    font-weight: bold;
+    margin-right: 32px;
+    min-width: 40px;
+}
+
+.btnHolder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submitBtn{
+    padding: 16px 64px;
+    margin-right: 8px;
+    width: 225px;
+  }
+  
+  .submitBtn:hover{
+    outline: 1px solid blue;
+  }

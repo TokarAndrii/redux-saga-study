@@ -1,0 +1,5 @@
+const ADD_POST_STARTED = '[list-posts]/ADD_POST_STARTED';
+const ADD_POST_FAILED = '[list-posts]/ADD_POST_FAILED';
+const ADD_POST_SUCCEEDED = '[list-posts]/ADD_POST_SUCCEEDED';
+
+export default { ADD_POST_STARTED, ADD_POST_FAILED, ADD_POST_SUCCEEDED }
