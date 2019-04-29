@@ -15,17 +15,23 @@ function App({ getListposts, isLoading, error, isErrorOpen, getToken, authToken,
   useEffect(() => {
     if (!authToken) {
       getToken();
-    }
-  });
+      //getListposts();
+    };
+
+    //https://stackoverflow.com/questions/53070970/infinite-loop-in-useeffect
+
+
+  }, []);
 
   const handleDelete = () => {
     console.log('selectedListPosts', JSON.stringify(selectedListPosts, null, 2));
-    if (selectedListPosts.length > 1) {
-      alert('please select only 1 element for deleting, it is not supported multiple deleting yet')
+    if (selectedListPosts && selectedListPosts.length > 1 || !selectedListPosts) {
+      alert('please select only 1 element for deleting, it is not supported multiple deleting yet');
+      return;
     }
     //console.log('selectedListPosts', selectedListPosts)
     //const { id } = selectedListPosts[0];
-    handleDeletePosts()
+    handleDeletePosts();
   }
 
   return (
