@@ -1,7 +1,8 @@
 import addPostTypes from './addPostTypes';
 
-const ADD_POST_STARTED = () => ({
-    type: addPostTypes.ADD_POST_STARTED
+const ADD_POST_STARTED = post => ({
+    type: addPostTypes.ADD_POST_STARTED,
+    payload: { post }
 });
 
 const ADD_POST_FAILED = (error) => ({

@@ -52,7 +52,9 @@ const makeRequestToken = () => {
 
 }
 
-const addPost = ({ title, content }) => {
+const addPost = (title, content) => {
+    console.log('title addPost', title);
+    console.log('content addPost', content)
     console.log('addPostRequest');
     const state = store.getState();
     const authToken = selectors.getAuthToken(state);
@@ -67,7 +69,7 @@ const addPost = ({ title, content }) => {
         })
 
         .then(resp => {
-            console.log('resp at addPost', resp);
+            console.log('resp at addPost api', resp);
             return resp;
         })
 
