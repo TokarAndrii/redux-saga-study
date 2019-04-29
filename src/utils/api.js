@@ -73,6 +73,24 @@ const addPost = (title, content) => {
             return resp;
         })
 
+};
+
+const deletePosts = (id) => {
+    const state = store.getState();
+    const authToken = selectors.getAuthToken(state);
+    console.log('authToken at deletePosts', authToken);
+
+    return axiosInstance.delete(`${POSTS_URL}/${id}`,
+        {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        }
+    )
+        .then(resp => {
+            console.log('resp at deletePosts api', resp);
+            return resp;
+        })
 }
 
 
@@ -80,5 +98,6 @@ const addPost = (title, content) => {
 export default {
     makeRequestListPosts,
     makeRequestToken,
-    addPost
+    addPost,
+    deletePosts
 }

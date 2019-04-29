@@ -10,14 +10,24 @@ import AddPostForm from '../formAddPost/FormAddPostContainer'
 import selectors from './selectors';
 import styles from './App.module.css';
 
-function App({ getListposts, isLoading, error, isErrorOpen, getToken, authToken }) {
+function App({ getListposts, isLoading, error, isErrorOpen, getToken, authToken,
+  handleDeletePosts, selectedListPosts }) {
   useEffect(() => {
-    //to do call for token
     if (!authToken) {
       getToken();
     }
-
   });
+
+  const handleDelete = () => {
+    console.log('selectedListPosts', JSON.stringify(selectedListPosts, null, 2));
+    if (selectedListPosts.length > 1) {
+      alert('please select only 1 element for deleting, it is not supported multiple deleting yet')
+    }
+    //console.log('selectedListPosts', selectedListPosts)
+    //const { id } = selectedListPosts[0];
+    handleDeletePosts()
+  }
+
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
@@ -29,7 +39,8 @@ function App({ getListposts, isLoading, error, isErrorOpen, getToken, authToken 
       </header>
       <div className={styles.buttonsPannel}>
         <button className={styles.fetchBtn} onClick={getListposts}>Fetch posts</button>
-        <button className={styles.fetchBtn}>Delete selected</button>
+        <button className={styles.fetchBtn} onClick={handleDelete}>
+          Delete selected</button>
         <button className={styles.fetchBtn}>Edit selected</button>
 
       </div>
@@ -48,12 +59,14 @@ const MSTp = state => ({
   isLoading: selectors.getIsLoading(state),
   error: selectors.getError(state),
   isErrorOpen: selectors.getIsErrorOpen(state),
-  authToken: selectors.getAuthToken(state)
+  authToken: selectors.getAuthToken(state),
+  selectedListPosts: selectors.getSelectedPostItem(state),
 })
 
 const MDTp = {
   getListposts: listPostsActions.FETCH_LIST_POSTS_STARTED,
-  getToken: authActions.AUTH_REQUEST_TOKEN_STARTED
+  getToken: authActions.AUTH_REQUEST_TOKEN_STARTED,
+  handleDeletePosts: listPostsActions.FETCH_LIST_POSTS_DELETE_STARTED
 
 }
 

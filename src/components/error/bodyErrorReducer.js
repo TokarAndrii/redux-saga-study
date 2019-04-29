@@ -8,6 +8,7 @@ const bodyErrorReducer = (state = '', { type, payload }) => {
         case postsTypes.FETCH_LIST_POSTS_FAILED:
         case authTypes.AUTH_REQUEST_TOKEN_FAILED:
         case addPostTypes.ADD_POST_FAILED:
+        case postsTypes.FETCH_LIST_POSTS_DELETE_FAILED:
             return payload.error;
         case errorTypes.SET_ERROR_IS_CLOSED:
             return "";

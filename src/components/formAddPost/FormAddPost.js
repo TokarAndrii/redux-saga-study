@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styles from './FormAddPost.module.css'
+import routes from '../../configs/routes'
+import styles from './FormAddPost.module.css';
 
 const INITIAL_STATE = {
     title: '',
@@ -14,6 +15,12 @@ class FormAddPost extends Component {
         this.setState({ [name]: value })
     }
 
+    handleRedirectToMainPage = () => {
+        const { history } = this.props;
+        history.push(routes.INDEX);
+    }
+
+
     handleSubmit = e => {
         e.preventDefault();
         console.log('handleSubmit');
@@ -23,7 +30,7 @@ class FormAddPost extends Component {
         if (!title || !content) return alert("title or content empty!!!");
         console.log(`title - ${title}, content - ${content}`);
         addPost(newPost);
-
+        this.handleRedirectToMainPage();
     }
 
     render() {
