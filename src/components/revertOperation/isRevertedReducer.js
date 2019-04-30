@@ -6,6 +6,8 @@ const isRevertedReducer = (state = null, { type }) => {
       return false;
     case revertTypes.FETCH_REVERT_SUCCEDED:
       return true;
+    case revertTypes.IS_REVERTED_TO_DEFAULT_VALUE:
+      return null;
     default:
       return state;
   }

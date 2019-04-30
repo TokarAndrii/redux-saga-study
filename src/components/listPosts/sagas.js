@@ -23,7 +23,9 @@ function* deletePost() {
         listPostsActions.FETCH_LIST_POSTS_DELETE_SUCCEEDED(selectedPost)
       );
     yield put(
-      revertActions.SET_REVERT_OPERATHION_METHOD(revertTypes.CREATE_FOR_REVERT)
+      revertActions.SET_REVERT_OPERATHION_METHOD(
+        revertTypes.CREATE_METHOD_FOR_REVERT
+      )
     );
     yield put(revertActions.SHOW_REVERT());
     yield delay(3000);
