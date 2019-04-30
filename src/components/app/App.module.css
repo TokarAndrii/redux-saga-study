@@ -6,34 +6,23 @@
   position: relative;
 }
 
-
 .appHeader {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   width: 100%;
-  margin-bottom: 32px;  
+  margin-bottom: 32px;
 }
 
-.buttonsPannel{
+.buttonsPannel {
   display: flex;
 }
 
-.one{
-  font-weight: bold;
-}
-
-.two{
-  font-size: 24px;
-  color: grey;
-}
-
-.fetchBtn{
+.fetchBtn {
   padding: 16px 64px;
   margin-right: 8px;
   width: 225px;
@@ -43,23 +32,25 @@
   text-decoration: none;
   margin-right: 8px;
   color: grey;
+  margin-right: 32px;
+}
+.linkAddForm:hover {
+  color: white;
 }
 
-.fetchBtn:hover{
+.fetchBtn:hover {
   outline: 1px solid blue;
 }
 
-.spinner{
+.spinner {
   position: absolute;
   top: 200px;
   left: 49%;
 }
 
-.error{
+.error {
   border: 2px solid red;
   padding: 16px 64px;
   margin-top: 32px;
   position: relative;
 }
-
-

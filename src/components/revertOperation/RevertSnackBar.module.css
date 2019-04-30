@@ -1,0 +1,47 @@
+.revertSnack {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #282c34;
+  padding: 16px;
+  width: 500px;
+  color: white;
+  position: absolute;
+  top: 15vh;
+  left: -600px;
+  animation-name: translateSnack;
+  animation-duration: 3s;
+}
+
+@keyframes translateSnack {
+  0% {
+    left: -600px;
+  }
+  50% {
+    left: 0;
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+.btn {
+  padding: 16px 64px;
+  margin-right: 8px;
+  width: 225px;
+  background-color: white;
+  border: 1px solid #282c34;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url("./undo.svg") no-repeat;
+}

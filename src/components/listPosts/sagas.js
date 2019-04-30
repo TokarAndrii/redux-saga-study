@@ -3,23 +3,32 @@ import api from "../../utils/api";
 import listPostsActions from "./listPostsActions";
 import tokenGetWatcher from "../auth/sagas";
 import addPostWatcher from "../formAddPost/sagas";
+import revertWatcher from "../revertOperation/sagas";
 import selectors from "../app/selectors";
 import types from "./types";
+import revertActions from "../revertOperation/revertActions";
+import revertTypes from "../../configs/revertTypes";
+
+//const METHOD_FOR_REVERT = "CREATE";
 
 function* deletePost() {
   try {
     // this for emulate long time api fetch to show spinner
     yield delay(500);
     const selectedPost = yield select(selectors.getSelectedPostItem);
-    console.log("selectedPost at deletePost", selectedPost);
     const { id } = selectedPost;
     const result = yield call(api.deletePosts, id);
-    console.log("result function* deletePost", result);
-    console.log("result function* deletePost", result.status);
     if (result.status === 204)
       yield put(
         listPostsActions.FETCH_LIST_POSTS_DELETE_SUCCEEDED(selectedPost)
       );
+    yield put(
+      revertActions.SET_REVERT_OPERATHION_METHOD(revertTypes.CREATE_FOR_REVERT)
+    );
+    yield put(revertActions.SHOW_REVERT());
+    yield delay(3000);
+    yield put(revertActions.CLOSE_REVERT());
+    yield put(revertActions.SET_REVERT_OPERATHION_METHOD(null));
   } catch (error) {
     console.log("Oops error: ", error);
     yield put(listPostsActions.FETCH_LIST_POSTS_DELETE_FAILED(error));
@@ -54,6 +63,7 @@ export default function* rootSaga() {
     listPostsWatcher(),
     tokenGetWatcher(),
     addPostWatcher(),
-    deletePostwatcher()
+    deletePostwatcher(),
+    revertWatcher()
   ]);
 }

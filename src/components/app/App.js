@@ -7,6 +7,7 @@ import authActions from "../auth/authActions";
 import IsLoadingComponent from "../isLoading/IsLoadingComponent";
 import ErrorComponet from "../error/ErrorComponentContainer";
 import AddPostForm from "../formAddPost/FormAddPostContainer";
+import RevertSnackBar from "../revertOperation/RevertSnackBarContainer";
 import selectors from "./selectors";
 import styles from "./App.module.css";
 
@@ -20,7 +21,8 @@ function App({
   handleDeletePosts,
   selectedListPosts,
   addPost,
-  deletedPost
+  deletedPost,
+  isShowRevert
 }) {
   useEffect(() => {
     if (!authToken) {
@@ -28,11 +30,7 @@ function App({
     }
 
     if (authToken) getListposts();
-
-    console.log("useEffect");
-
-    //https://stackoverflow.com/questions/53070970/infinite-loop-in-useeffect
-  }, [authToken, getToken, addPost, getListposts, deletedPost]);
+  }, [authToken, getToken, addPost, getListposts, deletedPost, error]);
 
   const handleDelete = () => {
     console.log(
@@ -43,20 +41,16 @@ function App({
       (selectedListPosts && selectedListPosts.length > 1) ||
       !selectedListPosts
     ) {
-      alert(
-        "please select only 1 element for deleting, it is not supported multiple deleting yet"
-      );
+      alert("please select only 1 element for deleting");
       return;
     }
-    //console.log('selectedListPosts', selectedListPosts)
-    //const { id } = selectedListPosts[0];
+
     handleDeletePosts();
   };
 
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
-        <p className={`${styles.one} ${styles.two}`}>Redux-Saga</p>
         <Link className={styles.linkAddForm} to="/">
           Home
         </Link>
@@ -73,9 +67,10 @@ function App({
         </button>
         <button className={styles.fetchBtn}>Edit selected</button>
       </div>
+      {isShowRevert && <RevertSnackBar className={styles.revertSnack} />}
 
       {!isLoading && !error && <ListPosts />}
-      {isLoading && <IsLoadingComponent className={styles.spinner} />}
+      {isLoading && !error && <IsLoadingComponent />}
       {error && isErrorOpen && (
         <ErrorComponet className={styles.error} error={error} />
       )}
@@ -93,7 +88,8 @@ const MSTp = state => ({
   authToken: selectors.getAuthToken(state),
   selectedListPosts: selectors.getSelectedPostItem(state),
   addPost: selectors.getAddPost(state),
-  deletedPost: selectors.getDeletedPost(state)
+  deletedPost: selectors.getDeletedPost(state),
+  isShowRevert: selectors.getIsShowRevert(state)
 });
 
 const MDTp = {
