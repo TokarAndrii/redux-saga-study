@@ -10,6 +10,7 @@ const getAddPost = state => state.posts.addPost;
 const getDeletedPost = state => state.posts.deletePosts;
 const getIsShowRevert = state => state.revert.isShowRevert;
 const getRevertOperathionMethod = state => state.revert.operationMethod;
+const getIsReverted = state => state.revert.isReverted;
 
 export default {
   getListPosts,
@@ -23,5 +24,6 @@ export default {
   getAddPost,
   getDeletedPost,
   getIsShowRevert,
-  getRevertOperathionMethod
+  getRevertOperathionMethod,
+  getIsReverted
 };

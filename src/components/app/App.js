@@ -22,7 +22,8 @@ function App({
   selectedListPosts,
   addPost,
   deletedPost,
-  isShowRevert
+  isShowRevert,
+  isReverted
 }) {
   useEffect(() => {
     if (!authToken) {
@@ -30,7 +31,15 @@ function App({
     }
 
     if (authToken) getListposts();
-  }, [authToken, getToken, addPost, getListposts, deletedPost, error]);
+  }, [
+    authToken,
+    getToken,
+    addPost,
+    getListposts,
+    deletedPost,
+    error,
+    isReverted
+  ]);
 
   const handleDelete = () => {
     console.log(
@@ -89,7 +98,8 @@ const MSTp = state => ({
   selectedListPosts: selectors.getSelectedPostItem(state),
   addPost: selectors.getAddPost(state),
   deletedPost: selectors.getDeletedPost(state),
-  isShowRevert: selectors.getIsShowRevert(state)
+  isShowRevert: selectors.getIsShowRevert(state),
+  isReverted: selectors.getIsReverted(state)
 });
 
 const MDTp = {

@@ -1,6 +1,6 @@
-import { call, takeLatest, select } from "redux-saga/effects";
+import { put, call, takeLatest, select } from "redux-saga/effects";
 import api from "../../utils/api";
-//import revertActions from "./revertActions";
+import revertActions from "./revertActions";
 import revertTypes from "./revertTypes";
 import selectors from "../app/selectors";
 import revertTypesMethods from "../../configs/revertTypes";
@@ -23,6 +23,12 @@ function* revertOperation() {
       console.log("id", id);
       const result = yield call(api.deletePosts, id);
       console.log("result at function* revertOperation", result);
+      console.log("result.status", result.status);
+      if (result.status === 204) {
+        yield put(revertActions.FETCH_REVERT_SUCCEDED());
+        //return;
+      }
+      yield put(revertActions.FETCH_REVERT_FAILED());
   }
 }
 
