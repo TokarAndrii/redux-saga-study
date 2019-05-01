@@ -5,8 +5,6 @@ import addPostActions from "./addPostActions";
 import revertActions from "../revertOperation/revertActions";
 import revertTypes from "../../configs/revertTypes";
 
-//const METHOD_FOR_REVERT = "DELETE";
-
 function* addPost(newPostAction) {
   try {
     // this for emulate long time api fetch to show spinner
@@ -14,7 +12,6 @@ function* addPost(newPostAction) {
     const { post } = newPostAction.payload;
     const { title, content } = post;
     const result = yield call(api.addPost, title, content);
-    console.log("result at function* addPost", result);
 
     if (result.status === 201) {
       yield put(addPostActions.ADD_POST_SUCCEEDED(result.data));
@@ -29,7 +26,6 @@ function* addPost(newPostAction) {
       yield put(revertActions.SET_REVERT_OPERATHION_METHOD(null));
     }
   } catch (error) {
-    console.log("error", error);
     yield put(addPostActions.ADD_POST_FAILED(error));
   }
 }

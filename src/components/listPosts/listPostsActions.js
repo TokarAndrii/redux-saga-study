@@ -19,6 +19,10 @@ const SET_POST_TO_SELECTED_LIST = selectedList => ({
   payload: { selectedList }
 });
 
+const SET_SELECTED_LIST_TO_EMPTY = () => ({
+  type: types.SET_SELECTED_LIST_TO_EMPTY,
+  payload: []
+});
 const FETCH_LIST_POSTS_DELETE_SUCCEEDED = deletedPost => ({
   type: types.FETCH_LIST_POSTS_DELETE_SUCCEEDED,
   payload: { deletedPost }
@@ -40,5 +44,6 @@ export default {
   SET_POST_TO_SELECTED_LIST,
   FETCH_LIST_POSTS_DELETE_STARTED,
   FETCH_LIST_POSTS_DELETE_SUCCEEDED,
-  FETCH_LIST_POSTS_DELETE_FAILED
+  FETCH_LIST_POSTS_DELETE_FAILED,
+  SET_SELECTED_LIST_TO_EMPTY
 };

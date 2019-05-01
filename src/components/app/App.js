@@ -42,14 +42,12 @@ function App({
   ]);
 
   const handleDelete = () => {
-    console.log(
-      "selectedListPosts",
-      JSON.stringify(selectedListPosts, null, 2)
-    );
     if (
+      !selectedListPosts ||
       (selectedListPosts && selectedListPosts.length > 1) ||
-      !selectedListPosts
+      (selectedListPosts && selectedListPosts.length <= 0)
     ) {
+      //TO DO instead alerts a message
       alert("please select only 1 element for deleting");
       return;
     }
@@ -95,7 +93,8 @@ const MSTp = state => ({
   error: selectors.getError(state),
   isErrorOpen: selectors.getIsErrorOpen(state),
   authToken: selectors.getAuthToken(state),
-  selectedListPosts: selectors.getSelectedPostItem(state),
+  selectedPost: selectors.getSelectedPostItem(state),
+  selectedListPosts: selectors.getSelectedPostsList(state),
   addPost: selectors.getAddPost(state),
   deletedPost: selectors.getDeletedPost(state),
   isShowRevert: selectors.getIsShowRevert(state),

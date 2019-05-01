@@ -31,9 +31,10 @@ function* deletePost() {
     yield delay(3000);
     yield put(revertActions.CLOSE_REVERT());
     yield put(revertActions.SET_REVERT_OPERATHION_METHOD(null));
+    yield put(listPostsActions.SET_SELECTED_LIST_TO_EMPTY());
   } catch (error) {
-    console.log("Oops error: ", error);
     yield put(listPostsActions.FETCH_LIST_POSTS_DELETE_FAILED(error));
+    yield put(listPostsActions.SET_SELECTED_LIST_TO_EMPTY());
   }
 }
 
@@ -42,12 +43,8 @@ function* getAllPosts() {
     // this for emulate long time api fetch to show spinner
     yield delay(500);
     const posts = yield call(api.makeRequestListPosts);
-
-    console.log("posts at getAllPosts", posts);
-
     yield put(listPostsActions.FETCH_LIST_POSTS_SUCCEEDED(posts));
   } catch (error) {
-    console.log("Oops error: ", error);
     yield put(listPostsActions.FETCH_LIST_POSTS_FAILED(error));
   }
 }

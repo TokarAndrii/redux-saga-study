@@ -28,8 +28,9 @@ const FETCH_REVERT_SUCCEDED = () => ({
   type: revertTypes.FETCH_REVERT_SUCCEDED
 });
 
-const FETCH_REVERT_FAILED = () => ({
-  type: revertTypes.FETCH_REVERT_FAILED
+const FETCH_REVERT_FAILED = error => ({
+  type: revertTypes.FETCH_REVERT_FAILED,
+  payload: { error }
 });
 
 const IS_REVERTED_TO_DEFAULT_VALUE = () => ({
