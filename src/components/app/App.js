@@ -72,7 +72,6 @@ function App({
         <button className={styles.fetchBtn} onClick={handleDelete}>
           Delete selected
         </button>
-        <button className={styles.fetchBtn}>Edit selected</button>
       </div>
       {isShowRevert && <RevertSnackBar className={styles.revertSnack} />}
 
