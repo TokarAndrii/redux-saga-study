@@ -3,6 +3,7 @@ import errorTypes from "./errorTypes";
 import authTypes from "../auth/authTypes";
 import addPostTypes from "../formAddPost/addPostTypes";
 import revertTypes from "../revertOperation/revertTypes";
+import editPostTypes from '../editForm/editTypes'
 
 const isErrorOpenReducer = (state = false, { type }) => {
   switch (type) {
@@ -13,6 +14,7 @@ const isErrorOpenReducer = (state = false, { type }) => {
     case addPostTypes.ADD_POST_FAILED:
     case postsTypes.FETCH_LIST_POSTS_DELETE_FAILED:
     case revertTypes.FETCH_REVERT_FAILED:
+    case editPostTypes.FETCH_EDIT_POST_FAILED:
       return true;
     default:
       return state;

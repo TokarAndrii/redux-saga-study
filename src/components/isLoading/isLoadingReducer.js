@@ -2,6 +2,7 @@ import postTypes from "../listPosts/types";
 import authTypes from "../auth/authTypes";
 import addPostTypes from "../formAddPost/addPostTypes";
 import revertTypes from "../revertOperation/revertTypes";
+import editPostTypes from '../editForm/editTypes';
 
 const isLoadingreducer = (state = false, { type }) => {
   switch (type) {
@@ -10,6 +11,7 @@ const isLoadingreducer = (state = false, { type }) => {
     case addPostTypes.ADD_POST_STARTED:
     case postTypes.FETCH_LIST_POSTS_DELETE_STARTED:
     case revertTypes.FETCH_REVERT_STARTED:
+    case editPostTypes.FETCH_EDIT_POST_STARTED:
       return true;
     case postTypes.FETCH_LIST_POSTS_SUCCEEDED:
     case postTypes.FETCH_LIST_POSTS_FAILED:
@@ -21,6 +23,8 @@ const isLoadingreducer = (state = false, { type }) => {
     case postTypes.FETCH_LIST_POSTS_DELETE_FAILED:
     case revertTypes.FETCH_REVERT_SUCCEDED:
     case revertTypes.FETCH_REVERT_FAILED:
+    case editPostTypes.FETCH_EDIT_POST_SUCCEDED:
+    case editPostTypes.FETCH_EDIT_POST_FAILED:
       return false;
     default:
       return state;

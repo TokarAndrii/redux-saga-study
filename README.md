@@ -15,6 +15,8 @@ user can:
 
 - delete note
 
+- update note
+
 - undo create note
 
 - undo delete note

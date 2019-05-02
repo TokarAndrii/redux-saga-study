@@ -7,6 +7,7 @@ import authActions from "../auth/authActions";
 import IsLoadingComponent from "../isLoading/IsLoadingComponent";
 import ErrorComponet from "../error/ErrorComponentContainer";
 import AddPostForm from "../formAddPost/FormAddPostContainer";
+import EditForm from '../editForm/EditFormContainer'
 import RevertSnackBar from "../revertOperation/RevertSnackBarContainer";
 import selectors from "./selectors";
 import styles from "./App.module.css";
@@ -23,7 +24,8 @@ function App({
   addPost,
   deletedPost,
   isShowRevert,
-  isReverted
+  isReverted,
+  editedPost
 }) {
   useEffect(() => {
     if (!authToken) {
@@ -32,14 +34,15 @@ function App({
 
     if (authToken) getListposts();
   }, [
-    authToken,
-    getToken,
-    addPost,
-    getListposts,
-    deletedPost,
-    error,
-    isReverted
-  ]);
+      authToken,
+      getToken,
+      addPost,
+      getListposts,
+      deletedPost,
+      error,
+      isReverted,
+      editedPost
+    ]);
 
   const handleDelete = () => {
     if (
@@ -69,9 +72,17 @@ function App({
         <button className={styles.fetchBtn} onClick={getListposts}>
           Fetch posts
         </button>
-        <button className={styles.fetchBtn} onClick={handleDelete}>
-          Delete selected
-        </button>
+
+        {selectedListPosts && selectedListPosts.length === 1 && (
+          <div className={styles.selectedActionsButtonsHolder}>
+            <button className={styles.fetchBtn} onClick={handleDelete}>
+              Delete selected
+                </button>
+            <Link className={`${styles.linkEditForm}`} to={`/edit/${selectedListPosts[0].id}`}>
+              Edit selected
+        </Link>
+          </div>)}
+
       </div>
       {isShowRevert && <RevertSnackBar className={styles.revertSnack} />}
 
@@ -82,6 +93,7 @@ function App({
       )}
       <Switch>
         <Route path="/add-post" component={AddPostForm} />
+        <Route path="/edit/:id" component={EditForm} />
       </Switch>
     </div>
   );
@@ -97,7 +109,8 @@ const MSTp = state => ({
   addPost: selectors.getAddPost(state),
   deletedPost: selectors.getDeletedPost(state),
   isShowRevert: selectors.getIsShowRevert(state),
-  isReverted: selectors.getIsReverted(state)
+  isReverted: selectors.getIsReverted(state),
+  editedPost: selectors.getEditedpost(state)
 });
 
 const MDTp = {

@@ -4,6 +4,7 @@ import listPostsActions from "./listPostsActions";
 import tokenGetWatcher from "../auth/sagas";
 import addPostWatcher from "../formAddPost/sagas";
 import revertWatcher from "../revertOperation/sagas";
+import editPostsWatcher from '../editForm/sagas';
 import selectors from "../app/selectors";
 import types from "./types";
 import revertActions from "../revertOperation/revertActions";
@@ -63,6 +64,7 @@ export default function* rootSaga() {
     tokenGetWatcher(),
     addPostWatcher(),
     deletePostwatcher(),
-    revertWatcher()
+    revertWatcher(),
+    editPostsWatcher()
   ]);
 }

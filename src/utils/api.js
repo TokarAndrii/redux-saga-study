@@ -69,9 +69,31 @@ const deletePosts = id => {
     });
 };
 
+const editPost = post => {
+  //console.log('post at editPost API', JSON.stringify(post, null, 2))
+  const state = store.getState();
+  const authToken = selectors.getAuthToken(state);
+  const { id, title, content } = post;
+
+  return axiosInstance
+    .patch(
+      `${POSTS_URL}/${id}`,
+      { title: title, content: content },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          ContentType: 'application/json;charset=UTF-8',
+        }
+      })
+    .then(resp => {
+      return resp;
+    });
+}
+
 export default {
   makeRequestListPosts,
   makeRequestToken,
   addPost,
-  deletePosts
+  deletePosts,
+  editPost
 };
